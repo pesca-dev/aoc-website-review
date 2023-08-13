@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: aoc-website-ingress
+  namespace: aoc-website
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`aoc.inf-cau.de`)
+      kind: Rule
+      services:
+        - name: aoc-website-service
+          port: 3000
+  tls:
+    certResolver: le

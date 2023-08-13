@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: aoc-website-deployment
+  name: aoc-website-deployment
+  namespace: aoc-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: aoc-website-deployment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: aoc-website-deployment
+    spec:
+      containers:
+        - image: ghcr.io/pesca-dev/aoc-website:latest
+          imagePullPolicy: Always
+          name: aoc-website-deployment
+          ports:
+            - containerPort: 3000
+          resources: {}
+      restartPolicy: Always
+status: {}
